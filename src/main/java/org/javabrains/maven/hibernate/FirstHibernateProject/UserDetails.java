@@ -3,6 +3,7 @@ package org.javabrains.maven.hibernate.FirstHibernateProject;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +16,8 @@ public class UserDetails {
 	// @Temporal(TemporalType.DATE) // To insert only date note timestamp
 	private Date joinedDate;
 
-	@Id
+	@Id	// creates primary key for this field
+	@GeneratedValue	// generates automatic next sequence for userId
 	// @Column(name = "user_id")
 	private int userId;
 
