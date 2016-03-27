@@ -1,10 +1,14 @@
 package org.javabrains.maven.hibernate.FirstHibernateProject;
 
+import java.util.HashSet;
+import java.util.Set;
+
 //import java.util.Date;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User_Details")
 public class UserDetails {
-	@Embedded	// tells this object is embedded.
+	/*@Embedded	// tells this object is embedded.
 	@AttributeOverrides({ 
 		@AttributeOverride(column = @Column(name = "HOME_STREET_NAME"), name = "street"),
 		@AttributeOverride(column = @Column(name = "HOME_CITY_NAME"), name = "city"),
@@ -29,7 +33,7 @@ public class UserDetails {
 		@AttributeOverride(column = @Column(name = "OFFICE_STATE_NAME"), name = "state"),
 		@AttributeOverride(column = @Column(name = "OFFICE_PIN_CODE"), name = "pincode")
 	})
-	private Address officeAddress;
+	private Address officeAddress;*/
 	// @Lob // for large object.
 	//private String description;
 	// @Temporal(TemporalType.DATE) // To insert only date note timestamp
@@ -44,20 +48,15 @@ public class UserDetails {
 	// @Transient // to skip this field.
 	private String userName;
 
-	public Address getHomeAddress() {
-		return homeAddress;
+	@ElementCollection
+	private Set<Address> listOfAddresses = new HashSet<Address>();
+
+	public Set<Address> getListOfAddresses() {
+		return listOfAddresses;
 	}
 
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	public Address getOfficeAddress() {
-		return officeAddress;
-	}
-
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
+	public void setListOfAddresses(Set<Address> listOfAddresses) {
+		this.listOfAddresses = listOfAddresses;
 	}
 
 	public int getUserId() {

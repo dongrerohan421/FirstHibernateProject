@@ -21,8 +21,7 @@ public class HibernateTest {
 		addr.setState("state name");
 		addr.setPincode("10001");
 		
-		user.setHomeAddress(addr);	
-		
+		//user.setHomeAddress(addr);
 		
 		Address addr2 = new Address();
 		addr2.setStreet("Second Street name");
@@ -30,8 +29,10 @@ public class HibernateTest {
 		addr2.setState("Second state name");
 		addr2.setPincode("20002");
 		
-		user.setOfficeAddress(addr2);
+		//user.setOfficeAddress(addr2);
 		
+		user.getListOfAddresses().add(addr);
+		user.getListOfAddresses().add(addr2);
 		
 		/*UserDetails user2 = new UserDetails();
 		//user.setUserId(1);
