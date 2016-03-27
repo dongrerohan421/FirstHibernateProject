@@ -1,7 +1,7 @@
 package org.maven.hibernate;
 
 import org.javabrains.maven.hibernate.FirstHibernateProject.Address;
-import java.util.Date;
+//import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,17 +14,23 @@ public class HibernateTest {
 		UserDetails user = new UserDetails();
 		//user.setUserId(1);
 		user.setUserName("First User");
-		user.setJoinedDate(new Date());
-		user.setDescription("Description of First User.");
 		
 		Address addr = new Address();
 		addr.setStreet("Street name");
 		addr.setCity("city name");
 		addr.setState("state name");
-		addr.setPincode("pincode name");
+		addr.setPincode("10001");
 		
-		user.setAddress(addr);
+		user.setHomeAddress(addr);	
 		
+		
+		Address addr2 = new Address();
+		addr2.setStreet("Second Street name");
+		addr2.setCity("Second city name");
+		addr2.setState("Second state name");
+		addr2.setPincode("20002");
+		
+		user.setOfficeAddress(addr2);
 		
 		
 		/*UserDetails user2 = new UserDetails();

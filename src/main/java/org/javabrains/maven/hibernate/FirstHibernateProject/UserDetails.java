@@ -1,7 +1,10 @@
 package org.javabrains.maven.hibernate.FirstHibernateProject;
 
-import java.util.Date;
+//import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +15,25 @@ import javax.persistence.Table;
 @Table(name = "User_Details")
 public class UserDetails {
 	@Embedded	// tells this object is embedded.
-	private Address address;
+	@AttributeOverrides({ 
+		@AttributeOverride(column = @Column(name = "HOME_STREET_NAME"), name = "street"),
+		@AttributeOverride(column = @Column(name = "HOME_CITY_NAME"), name = "city"),
+		@AttributeOverride(column = @Column(name = "HOME_STATE_NAME"), name = "state"),
+		@AttributeOverride(column = @Column(name = "HOME_PIN_CODE"), name = "pincode")
+	})
+	private Address homeAddress;
+	@Embedded
+	@AttributeOverrides({ 
+		@AttributeOverride(column = @Column(name = "OFFICE_STREET_NAME"), name = "street"),
+		@AttributeOverride(column = @Column(name = "OFFICE_CITY_NAME"), name = "city"),
+		@AttributeOverride(column = @Column(name = "OFFICE_STATE_NAME"), name = "state"),
+		@AttributeOverride(column = @Column(name = "OFFICE_PIN_CODE"), name = "pincode")
+	})
+	private Address officeAddress;
 	// @Lob // for large object.
-	private String description;
+	//private String description;
 	// @Temporal(TemporalType.DATE) // To insert only date note timestamp
-	private Date joinedDate;
+	//private Date joinedDate;
 
 	@Id	// creates primary key for this field
 	@GeneratedValue	// generates automatic next sequence for userId
@@ -27,43 +44,38 @@ public class UserDetails {
 	// @Transient // to skip this field.
 	private String userName;
 
-	public Address getAddress() {
-		return address;
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
 
-	public String getDescription() {
-		return description;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
 	}
 
-	public Date getJoinedDate() {
-		return joinedDate;
+	public Address getOfficeAddress() {
+		return officeAddress;
+	}
+
+	public void setOfficeAddress(Address officeAddress) {
+		this.officeAddress = officeAddress;
 	}
 
 	public int getUserId() {
 		return userId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
-	}
-
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	
+
 }
