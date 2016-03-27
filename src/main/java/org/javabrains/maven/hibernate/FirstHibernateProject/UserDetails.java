@@ -2,6 +2,7 @@ package org.javabrains.maven.hibernate.FirstHibernateProject;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User_Details")
 public class UserDetails {
+	@Embedded	// tells this object is embedded.
 	private String address;
 	// @Lob // for large object.
 	private String description;
