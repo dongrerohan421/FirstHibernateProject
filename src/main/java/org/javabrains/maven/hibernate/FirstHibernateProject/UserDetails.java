@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "User_Details")
 public class UserDetails {
 	@Embedded	// tells this object is embedded.
-	private String address;
+	private Address address;
 	// @Lob // for large object.
 	private String description;
 	// @Temporal(TemporalType.DATE) // To insert only date note timestamp
@@ -27,7 +27,7 @@ public class UserDetails {
 	// @Transient // to skip this field.
 	private String userName;
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
@@ -47,7 +47,7 @@ public class UserDetails {
 		return userName;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
